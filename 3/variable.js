@@ -7,7 +7,7 @@
 
 //---------------------------------------------------------------------------------
 
-// 2. Variable (변수) - 변경될 수 있는 값.. 
+// 2. Variable (변수), rw - 변경될 수 있는 값.. 
 // let (added in ES6) 
 let globalName = 'global name';
 {
@@ -31,7 +31,17 @@ console.log(age);
 
 //---------------------------------------------------------------------------------
 
-// 3. Contants
+// 3. Contant, r(read only)
+// use const whenever possible.
+// only use let if variable needs to change.
+
+// Note!!!
+// Immutable data types : premitive types, frozen objects (i.e. object.freeze())
+//                        데이터 자체를 변경 불가.
+
+// Mutable data types : all objects by default are mutable in JS 
+//                        데이터 자체 변경 가능.
+
 // favor immutable data type always for a few reasons : 
 // ( 값을 할당후에 변경되지 않는.. )
 //      - security (보안상의 이유)
@@ -118,6 +128,7 @@ console.log(`value: ${symbol1.description}, type: ${typeof symbol1.description}`
 
 // object, real-life object, data structure
 const ellie = {name : 'ellie', age:20};
+ellie.name = 'ellie';
 ellie.age = 21;
 
 

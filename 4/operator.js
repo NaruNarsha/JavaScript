@@ -87,21 +87,58 @@ const numberFive = 5;
 console.log(stringFive == numberFive);
 console.log(stringFive != numberFive);
 
+
+//-------------------------------------------------------------------------
+
 // === strict equality, no type conversion
 // 타입이 다를 경우 
 console.log(stringFive === numberFive);
 console.log(stringFive !== numberFive);
 
 
+
+//-------------------------------------------------------------------------
+
 // object equality by reference
 const ellie1 = {name: 'ellie'};
 const ellie2 = {name: 'ellie'};
 const ellie3 = ellie1;
 
+console.log('=== object equality by reference ===')
 console.log(ellie1 == ellie2);
 console.log(ellie1 === ellie2);
 console.log(ellie1 === ellie3);
 
 
+//-------------------------------------------------------------------------
+
+// equality - puzzler
+console.log('=== equality - puzzler ===')
+console.log(0 == false);
+console.log(0 === false);
+console.log('' == false);
+console.log('' === false);
+console.log(null == undefined);
+console.log(null === undefined);
+
 
 //-------------------------------------------------------------------------
+
+// 8. Conditional perators: if
+// if, else if, else
+
+console.log('8. Conditional perators: if');
+
+const name = 'coder';
+if(name === 'ellie')
+{
+    console.log('Wecome, Ellie!');
+}
+else if(name === 'coder')
+{
+    console.log('You are amazing coder');
+}
+else
+{
+    console.log('unkwnon'); 
+}

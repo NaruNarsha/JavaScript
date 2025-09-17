@@ -27,6 +27,21 @@
 const promise = new Promise((resolve, reject) => {
     // doing some heavy work (network, read files)
     console.log('doing something...');
+
+    setTimeout(() => {
+        //resolve('ellie');
+        reject(new Error('no network'));
+    }, 2000);
 });
 
 
+// 2. Consumer: then, catch, finally
+// then :: promise가 정상적으로 수행이 되었을 때
+// catch :: promise가 에러가 났을 때
+promise
+.then((value) => {
+    console.log(value);
+})
+.catch(error => {
+    console.log(error);
+});

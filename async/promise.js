@@ -29,19 +29,82 @@ const promise = new Promise((resolve, reject) => {
     console.log('doing something...');
 
     setTimeout(() => {
-        //resolve('ellie');
-        reject(new Error('no network'));
+        resolve('ellie');
+        //reject(new Error('no network'));
     }, 2000);
 });
 
 
+
+//----------------------------------------------------------------
 // 2. Consumer: then, catch, finally
 // then :: promise가 정상적으로 수행이 되었을 때
 // catch :: promise가 에러가 났을 때
+// finally :: 성공이든 실패든 상관없이 무조건 실행
 promise
 .then((value) => {
     console.log(value);
 })
 .catch(error => {
     console.log(error);
+})
+.finally(() => {
+    console.log('finally');
+})
+
+
+
+//----------------------------------------------------------------
+// 3. Promise chaining
+// Promise 연결하기
+const fetchNumber = new Promise((resolve, reject) => {
+    setTimeout(() => {
+        resolve(1);
+    }, 1000);
 });
+
+fetchNumber
+.then(num => num * 2)
+.then(num => num * 3)
+.then(num => {
+    return new Promise((resole, reject) => {
+        setTimeout(() => {
+            resole(num - 1)
+        }, 1000);
+    })
+})
+.then(num => console.log(num));
+
+
+
+//----------------------------------------------------------------
+// 4. Error Handling
+const getHen = () =>
+    new Promise((resolve, reject) => {
+        setTimeout(() => resolve('hen'), 1000);
+    });
+
+const getEgg = hen =>
+    new Promise((resolve, reject) => {
+        setTimeout(() => resolve(`${hen} => egg`), 1000);
+    });
+
+const cook = egg =>
+    new Promise((resolve, reject) => {
+        setTimeout(() => resolve(`${egg} => fried egg`), 1000);
+    });
+
+
+// getHen()
+// .then(hen => getEgg(hen))
+// .then(egg => cook(egg))
+// .then(meal => console.log(meal));
+
+getHen()
+.then(getEgg)
+.catch(error =>{
+    return 'bread';
+})
+.then(cook)
+.then(console.log)
+.catch(console.log); // 중간에 에러가 나도 catch로 잡아낼 수 있음
